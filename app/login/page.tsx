@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 const ROLE_OPTIONS: { value: Role; label: string; icon: React.ComponentType<{ className?: string }>; desc: string }[] = [
   { value: 'school', label: 'School', icon: GraduationCap, desc: 'School Administrator' },
   { value: 'parent', label: 'Parent', icon: Users, desc: 'Parent / Guardian' },
-  { value: 'admin', label: 'Admin', icon: Shield, desc: 'SafeRide Platform Admin' },
+  { value: 'admin', label: 'Admin', icon: Shield, desc: 'Kinnect Platform Admin' },
 ];
 
 export default function LoginPage() {
@@ -90,7 +90,7 @@ export default function LoginPage() {
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div>
-            <p className="font-poppins text-xl font-bold text-white">SafeRide</p>
+            <p className="font-poppins text-xl font-bold text-white">Kinnect</p>
             <p className="text-xs uppercase tracking-wider text-white/50">Team Kindred</p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export default function LoginPage() {
       <div className="flex flex-1 items-center justify-center bg-card p-6 lg:p-12">
         <div className="w-full max-w-md animate-scale-in">
           <div className="mb-8 text-center lg:text-left">
-            <h2 className="font-poppins text-2xl font-bold tracking-tight">Welcome to SafeRide</h2>
+            <h2 className="font-poppins text-2xl font-bold tracking-tight">Welcome to Kinnect</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Sign in to access your dashboard
             </p>

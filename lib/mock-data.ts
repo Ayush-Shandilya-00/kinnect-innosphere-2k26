@@ -28,7 +28,7 @@ export const DEMO_USERS: Record<string, User> = {
     username: 'admin',
     password: '0000',
     role: 'admin',
-    displayName: 'SafeRide Administrator',
+    displayName: 'Kinnect Administrator',
   },
 };
 
@@ -610,7 +610,7 @@ export interface LoginActivity {
 export const LOGIN_ACTIVITY: LoginActivity[] = [
   { id: 'la-001', user: 'The Oriental School', role: 'School', ip: '103.21.xxx.xx', timestamp: '2026-10-02 08:30:15', status: 'Success' },
   { id: 'la-002', user: 'Neha Sharma', role: 'Parent', ip: '106.51.xxx.xx', timestamp: '2026-10-02 08:15:42', status: 'Success' },
-  { id: 'la-003', user: 'SafeRide Administrator', role: 'Admin', ip: '49.207.xx.xx', timestamp: '2026-10-02 09:00:01', status: 'Success' },
+  { id: 'la-003', user: 'Kinnect Administrator', role: 'Admin', ip: '49.207.xx.xx', timestamp: '2026-10-02 09:00:01', status: 'Success' },
   { id: 'la-004', user: 'Priya Mehta', role: 'School', ip: '14.139.xxx.xx', timestamp: '2026-10-02 08:20:33', status: 'Success' },
   { id: 'la-005', user: 'unknown', role: 'School', ip: '103.21.xxx.xx', timestamp: '2026-10-02 08:28:10', status: 'Failed' },
   { id: 'la-006', user: 'Vikram Patel', role: 'Parent', ip: '106.51.xxx.xx', timestamp: '2026-10-02 07:45:22', status: 'Success' },

@@ -18,7 +18,7 @@ export default function SettingsPage() {
     <div className="animate-fade-in space-y-6">
       <PageHeader
         title="Settings"
-        description="Manage your school's SafeRide configuration"
+        description="Manage your school's Kinnect configuration"
       />
 
       <div className="grid gap-6 lg:grid-cols-2">

@@ -15,7 +15,7 @@ export default function AdminSettingsPage() {
     <div className="animate-fade-in space-y-6">
       <PageHeader
         title="Platform Settings"
-        description="Manage SafeRide platform configuration"
+        description="Manage Kinnect platform configuration"
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -30,11 +30,11 @@ export default function AdminSettingsPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label>Administrator Name</Label>
-              <Input defaultValue="SafeRide Administrator" />
+              <Input defaultValue="Kinnect Administrator" />
             </div>
             <div className="space-y-2">
               <Label>Email</Label>
-              <Input defaultValue="admin@saferide.com" />
+              <Input defaultValue="admin@Kinnect.com" />
             </div>
             <div className="space-y-2">
               <Label>Phone</Label>

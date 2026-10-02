@@ -28,7 +28,7 @@ export default function AdminDashboard() {
     <div className="animate-fade-in space-y-6">
       <PageHeader
         title="Platform Overview"
-        description="SafeRide system-wide monitoring and management"
+        description="Kinnect system-wide monitoring and management"
       />
 
       {/* Stats */}

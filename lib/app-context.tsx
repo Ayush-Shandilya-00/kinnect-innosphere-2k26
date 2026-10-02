@@ -15,7 +15,7 @@ interface AppContextValue extends AuthState {
   logout: () => void;
 }
 
-const STORAGE_KEY = 'saferide-auth';
+const STORAGE_KEY = 'Kinnect-auth';
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 

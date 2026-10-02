@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'SafeRide — Student Transport Safety',
+  title: 'Kinnect — Student Transport Safety',
   description:
-    'SafeRide by Team Kindred — A student transport safety platform with RFID tracking, live bus monitoring, and real-time alerts.',
+    'Kinnect by Team Kindred — A student transport safety platform with RFID tracking, live bus monitoring, and real-time alerts.',
 };
 
 export default function RootLayout({

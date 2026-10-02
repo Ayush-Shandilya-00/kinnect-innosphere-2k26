@@ -24,7 +24,7 @@ export default function AdminAlertsPage() {
     <div className="animate-fade-in space-y-6">
       <PageHeader
         title="System Alerts"
-        description="All safety alerts across the SafeRide platform"
+        description="All safety alerts across the Kinnect platform"
       />
 
       {/* Stats */}

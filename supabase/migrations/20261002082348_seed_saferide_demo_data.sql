@@ -1,5 +1,5 @@
 /*
-# Seed SafeRide Demo Data
+# Seed Kinnect Demo Data
 
 1. Purpose
    Populates all tables with the fictional demo data matching the existing frontend mock data.
@@ -80,7 +80,7 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO login_activity (id, user_name, role, ip, timestamp, status) VALUES
   ('la-001', 'The Oriental School', 'School', '103.21.xxx.xx', '2026-10-02 08:30:15', 'Success'),
   ('la-002', 'Neha Sharma', 'Parent', '106.51.xxx.xx', '2026-10-02 08:15:42', 'Success'),
-  ('la-003', 'SafeRide Administrator', 'Admin', '49.207.xx.xx', '2026-10-02 09:00:01', 'Success'),
+  ('la-003', 'Kinnect Administrator', 'Admin', '49.207.xx.xx', '2026-10-02 09:00:01', 'Success'),
   ('la-004', 'Priya Mehta', 'School', '14.139.xxx.xx', '2026-10-02 08:20:33', 'Success'),
   ('la-005', 'unknown', 'School', '103.21.xxx.xx', '2026-10-02 08:28:10', 'Failed'),
   ('la-006', 'Vikram Patel', 'Parent', '106.51.xxx.xx', '2026-10-02 07:45:22', 'Success'),

@@ -1,8 +1,8 @@
 /*
-# SafeRide Database Schema
+# Kinnect Database Schema
 
 1. Purpose
-   Creates the full database backing the SafeRide student transport safety platform.
+   Creates the full database backing the Kinnect student transport safety platform.
    All data is fictional/demo for a competition prototype. The app uses frontend-only
    demo auth (localStorage), so policies are scoped to anon + authenticated to allow
    the anon-key client to read and write.
