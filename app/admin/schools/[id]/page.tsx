@@ -43,7 +43,8 @@ export default function SchoolDetailPage() {
   const [showBusModal, setShowBusModal] = useState(false);
   const [editBus, setEditBus] = useState<Bus | null>(null);
   const [busForm, setBusForm] = useState({
-    number: '', driverName: '', driverPhone: '', route: '', capacity: 30, status: 'Idle',
+    number: '', registrationNumber: '', driverName: '', driverPhone: '', route: '',
+    pickupStops: '', dropStops: '', deviceId: '', capacity: 30, status: 'Idle',
   });
   const [savingBus, setSavingBus] = useState(false);
 
@@ -99,13 +100,13 @@ export default function SchoolDetailPage() {
 
   // Bus handlers
   const openAddBus = () => {
-    setBusForm({ number: '', driverName: '', driverPhone: '', route: '', capacity: 30, status: 'Idle' });
+    setBusForm({ number: '', registrationNumber: '', driverName: '', driverPhone: '', route: '', pickupStops: '', dropStops: '', deviceId: '', capacity: 30, status: 'Idle' });
     setEditBus(null);
     setShowBusModal(true);
   };
 
   const openEditBus = (b: Bus) => {
-    setBusForm({ number: b.number, driverName: b.driverName, driverPhone: b.driverPhone, route: b.route, capacity: b.capacity, status: b.status });
+    setBusForm({ number: b.number, registrationNumber: b.registrationNumber || '', driverName: b.driverName, driverPhone: b.driverPhone, route: b.route, pickupStops: b.pickupStops || '', dropStops: b.dropStops || '', deviceId: b.deviceId || '', capacity: b.capacity, status: b.status });
     setEditBus(b);
     setShowBusModal(true);
   };
@@ -259,6 +260,7 @@ export default function SchoolDetailPage() {
                         <div>
                           <p className="font-semibold">{bus.number}</p>
                           <p className="text-sm text-muted-foreground">{bus.route}</p>
+                          {bus.registrationNumber && <p className="text-xs text-muted-foreground">Reg: {bus.registrationNumber}</p>}
                         </div>
                       </div>
                       <StatusBadge status={bus.status} variant={getBusStatusVariant(bus.status)} />
@@ -344,24 +346,15 @@ export default function SchoolDetailPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2"><Label>Bus Number / Registration</Label><Input value={busForm.number} onChange={(e) => setBusForm({ ...busForm, number: e.target.value })} placeholder="MP-04-KA-1234" /></div>
+              <div className="grid grid-cols-2 gap-4"><div className="space-y-2"><Label>Bus Number</Label><Input value={busForm.number} onChange={(e) => setBusForm({ ...busForm, number: e.target.value })} placeholder="Bus #4" /></div><div className="space-y-2"><Label>Registration Number</Label><Input value={busForm.registrationNumber} onChange={(e) => setBusForm({ ...busForm, registrationNumber: e.target.value })} placeholder="MP-04-KA-1234" /></div></div>
               <div className="space-y-2"><Label>Route</Label><Input value={busForm.route} onChange={(e) => setBusForm({ ...busForm, route: e.target.value })} placeholder="Route A — Anand Nagar → School" /></div>
+              <div className="grid grid-cols-2 gap-4"><div className="space-y-2"><Label>Pickup Stops</Label><Input value={busForm.pickupStops} onChange={(e) => setBusForm({ ...busForm, pickupStops: e.target.value })} placeholder="Anand Nagar, Kolar Road" /></div><div className="space-y-2"><Label>Drop Stops</Label><Input value={busForm.dropStops} onChange={(e) => setBusForm({ ...busForm, dropStops: e.target.value })} placeholder="School, MP Nagar" /></div></div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2"><Label>Driver Name</Label><Input value={busForm.driverName} onChange={(e) => setBusForm({ ...busForm, driverName: e.target.value })} placeholder="Driver name" /></div>
                 <div className="space-y-2"><Label>Driver Phone</Label><Input value={busForm.driverPhone} onChange={(e) => setBusForm({ ...busForm, driverPhone: e.target.value })} placeholder="+91 9XXX XXX XXX" /></div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2"><Label>Capacity</Label><Input type="number" value={busForm.capacity} onChange={(e) => setBusForm({ ...busForm, capacity: parseInt(e.target.value) || 30 })} /></div>
-                <div className="space-y-2">
-                  <Label>Status</Label>
-                  <select className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm" value={busForm.status} onChange={(e) => setBusForm({ ...busForm, status: e.target.value })}>
-                    <option value="Idle">Idle</option>
-                    <option value="On Route">On Route</option>
-                    <option value="At School">At School</option>
-                    <option value="Maintenance">Maintenance</option>
-                  </select>
-                </div>
-              </div>
+              <div className="grid grid-cols-2 gap-4"><div className="space-y-2"><Label>RFID/GPS Device ID</Label><Input value={busForm.deviceId} onChange={(e) => setBusForm({ ...busForm, deviceId: e.target.value })} placeholder="DEVICE-004" /></div><div className="space-y-2"><Label>Capacity</Label><Input type="number" value={busForm.capacity} onChange={(e) => setBusForm({ ...busForm, capacity: parseInt(e.target.value) || 30 })} /></div></div>
+              <div className="space-y-2"><Label>Bus Status</Label><select className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm" value={busForm.status} onChange={(e) => setBusForm({ ...busForm, status: e.target.value })}><option value="Idle">Idle</option><option value="On Route">On Route</option><option value="At School">At School</option><option value="Maintenance">Maintenance</option></select></div>
               <Button onClick={handleSaveBus} disabled={savingBus || !busForm.number} className="w-full">
                 {savingBus ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</> : editBus ? 'Update Bus' : 'Add Bus'}
               </Button>

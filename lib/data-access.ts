@@ -45,6 +45,10 @@ export async function getBuses(): Promise<Bus[]> {
       status: b.status as Bus['status'], lat: b.lat as number, lng: b.lng as number,
       speed: b.speed as number, nextStop: b.next_stop as string, eta: b.eta as string,
       schoolId: b.school_id as string,
+      registrationNumber: (b.registration_number as string) || '',
+      pickupStops: (b.pickup_stops as string) || '',
+      dropStops: (b.drop_stops as string) || '',
+      deviceId: (b.device_id as string) || '',
     }));
   } catch { return BUSES; }
 }
@@ -245,14 +249,16 @@ export async function deleteUser(id: string): Promise<boolean> {
 // ─── BUS CRUD ─────────────────────────────────────────────
 
 export async function addBus(bus: {
-  number: string; driverName: string; driverPhone: string; route: string;
-  capacity: number; schoolId: string; status?: string;
+  number: string; registrationNumber?: string; driverName: string; driverPhone: string; route: string;
+  pickupStops?: string; dropStops?: string; deviceId?: string; capacity: number; schoolId: string; status?: string;
 }): Promise<Bus | null> {
   try {
     const id = `bus-${Date.now()}`;
     const { data, error } = await supabase.from('buses').insert({
       id, number: bus.number, driver_name: bus.driverName, driver_phone: bus.driverPhone,
-      route: bus.route, capacity: bus.capacity, occupied: 0,
+      route: bus.route, registration_number: bus.registrationNumber || null,
+      pickup_stops: bus.pickupStops || null, drop_stops: bus.dropStops || null,
+      device_id: bus.deviceId || null, capacity: bus.capacity, occupied: 0,
       status: bus.status || 'Idle', lat: 23.25, lng: 77.47, speed: 0,
       next_stop: '—', eta: '—', school_id: bus.schoolId,
     }).select().single();
@@ -265,17 +271,25 @@ export async function addBus(bus: {
       status: b.status as Bus['status'], lat: b.lat as number, lng: b.lng as number,
       speed: b.speed as number, nextStop: b.next_stop as string, eta: b.eta as string,
       schoolId: b.school_id as string,
+      registrationNumber: (b.registration_number as string) || '',
+      pickupStops: (b.pickup_stops as string) || '',
+      dropStops: (b.drop_stops as string) || '',
+      deviceId: (b.device_id as string) || '',
     };
   } catch { return null; }
 }
 
 export async function updateBus(id: string, updates: {
-  number?: string; driverName?: string; driverPhone?: string; route?: string;
-  capacity?: number; status?: string; schoolId?: string;
+  number?: string; registrationNumber?: string; driverName?: string; driverPhone?: string; route?: string;
+  pickupStops?: string; dropStops?: string; deviceId?: string; capacity?: number; status?: string; schoolId?: string;
 }): Promise<boolean> {
   try {
     const update: Record<string, unknown> = {};
     if (updates.number !== undefined) update.number = updates.number;
+    if (updates.registrationNumber !== undefined) update.registration_number = updates.registrationNumber;
+    if (updates.pickupStops !== undefined) update.pickup_stops = updates.pickupStops;
+    if (updates.dropStops !== undefined) update.drop_stops = updates.dropStops;
+    if (updates.deviceId !== undefined) update.device_id = updates.deviceId;
     if (updates.driverName !== undefined) update.driver_name = updates.driverName;
     if (updates.driverPhone !== undefined) update.driver_phone = updates.driverPhone;
     if (updates.route !== undefined) update.route = updates.route;

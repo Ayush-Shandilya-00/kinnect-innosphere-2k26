@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { useApp } from '@/lib/app-context';
 import { NAV_ITEMS, ROLE_LABELS } from '@/lib/navigation';
 import type { Role } from '@/lib/mock-data';
-import { Shield, Bus as BusIcon, LogOut, Menu, X, ChevronDown, Bell } from 'lucide-react';
+import { LogOut, Menu, X, ChevronDown, Bell } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -93,18 +94,8 @@ export function DashboardLayout({
       >
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex h-16 items-center gap-2.5 border-b border-white/10 px-6">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-              <Shield className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <p className="font-poppins text-base font-bold leading-tight text-white">
-                Kinnect
-              </p>
-              <p className="text-[10px] uppercase tracking-wider text-white/50">
-                Team Kindred
-              </p>
-            </div>
+          <div className="flex h-16 items-center border-b border-white/10 px-4">
+            <Image src="/kinnect_logo.jpeg" alt="Kinnect — Powered by Team Kindred" width={180} height={101} className="h-auto w-44 rounded-lg object-contain" priority />
           </div>
 
           {/* Nav */}

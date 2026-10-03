@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/lib/app-context';
 import type { Role } from '@/lib/mock-data';
+import Image from 'next/image';
 import { Shield, Eye, EyeOff, AlertCircle, Bus, Users, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -85,14 +86,8 @@ export default function LoginPage() {
         </div>
 
         {/* Logo */}
-        <div className="relative flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/30">
-            <Shield className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <p className="font-poppins text-xl font-bold text-white">Kinnect</p>
-            <p className="text-xs uppercase tracking-wider text-white/50">Team Kindred</p>
-          </div>
+        <div className="relative">
+          <Image src="/kinnect_logo.jpeg" alt="Kinnect — Powered by Team Kindred" width={220} height={124} className="h-auto w-52 rounded-xl object-contain" priority />
         </div>
 
         {/* Hero text */}

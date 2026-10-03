@@ -250,6 +250,10 @@ export interface Bus {
   nextStop: string;
   eta: string;
   schoolId: string;
+  registrationNumber?: string;
+  pickupStops?: string;
+  dropStops?: string;
+  deviceId?: string;
 }
 
 export const BUSES: Bus[] = [
