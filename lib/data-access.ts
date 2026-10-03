@@ -294,6 +294,65 @@ export async function deleteBus(id: string): Promise<boolean> {
   } catch { return false; }
 }
 
+// ─── STUDENT CRUD ─────────────────────────────────────────
+
+export async function addStudent(student: {
+  name: string; grade: string; section: string; busId: string;
+  parentName: string; parentPhone: string; rfidId: string;
+  pickupStop: string; dropStop: string; status?: string;
+}): Promise<Student | null> {
+  try {
+    const id = `stu-${Date.now()}`;
+    const photo = student.name.split(' ').map((w) => w[0]).join('').toUpperCase().slice(0, 2);
+    const { data, error } = await supabase.from('students').insert({
+      id, name: student.name, grade: student.grade, section: student.section,
+      bus_id: student.busId, parent_id: `par-${Date.now()}`,
+      parent_name: student.parentName, parent_phone: student.parentPhone,
+      status: student.status || 'Waiting', pickup_stop: student.pickupStop,
+      drop_stop: student.dropStop, photo, rfid_id: student.rfidId,
+    }).select().single();
+    if (error) return null;
+    const s = data as Record<string, unknown>;
+    return {
+      id: s.id as string, name: s.name as string, grade: s.grade as string,
+      section: s.section as string, busId: s.bus_id as string,
+      parentId: s.parent_id as string, parentName: s.parent_name as string,
+      parentPhone: s.parent_phone as string, status: s.status as Student['status'],
+      pickupStop: s.pickup_stop as string, dropStop: s.drop_stop as string,
+      photo: s.photo as string, rfidId: s.rfid_id as string,
+    };
+  } catch { return null; }
+}
+
+export async function updateStudent(id: string, updates: {
+  name?: string; grade?: string; section?: string; busId?: string;
+  parentName?: string; parentPhone?: string; rfidId?: string;
+  pickupStop?: string; dropStop?: string; status?: string;
+}): Promise<boolean> {
+  try {
+    const update: Record<string, unknown> = {};
+    if (updates.name !== undefined) update.name = updates.name;
+    if (updates.grade !== undefined) update.grade = updates.grade;
+    if (updates.section !== undefined) update.section = updates.section;
+    if (updates.busId !== undefined) update.bus_id = updates.busId;
+    if (updates.parentName !== undefined) update.parent_name = updates.parentName;
+    if (updates.parentPhone !== undefined) update.parent_phone = updates.parentPhone;
+    if (updates.rfidId !== undefined) update.rfid_id = updates.rfidId;
+    if (updates.pickupStop !== undefined) update.pickup_stop = updates.pickupStop;
+    if (updates.dropStop !== undefined) update.drop_stop = updates.dropStop;
+    if (updates.status !== undefined) update.status = updates.status;
+    const { error } = await supabase.from('students').update(update).eq('id', id);
+    return !error;
+  } catch { return false; }
+}
+
+export async function deleteStudent(id: string): Promise<boolean> {
+  try {
+    const { error } = await supabase.from('students').delete().eq('id', id);
+    return !error;
+  } catch { return false; }
+}
+
 // ─── RFID + NOTIFICATIONS ─────────────────────────────────
 
 export async function insertRFIDEvent(event: {

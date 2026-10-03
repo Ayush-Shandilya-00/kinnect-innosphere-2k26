@@ -11,8 +11,7 @@ export const NAV_ITEMS: Record<Role, NavItem[]> = {
   school: [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/school' },
     { label: 'Students', icon: Users, href: '/school/students' },
-    { label: 'Users', icon: Users, href: '/school/users' },
-    { label: 'Buses', icon: Bus, href: '/school/buses' },
+    { label: 'Bus Fleet', icon: Bus, href: '/school/buses' },
     { label: 'Live Tracking', icon: MapPin, href: '/school/tracking' },
     { label: 'RFID Activity', icon: Radio, href: '/school/rfid' },
     { label: 'Alerts', icon: Bell, href: '/school/alerts' },
@@ -29,7 +28,6 @@ export const NAV_ITEMS: Record<Role, NavItem[]> = {
   admin: [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
     { label: 'Schools', icon: GraduationCap, href: '/admin/schools' },
-    { label: 'Users', icon: Users, href: '/admin/users' },
     { label: 'Fleet', icon: Bus, href: '/admin/fleet' },
     { label: 'Alerts', icon: Bell, href: '/admin/alerts' },
     { label: 'System Activity', icon: Activity, href: '/admin/activity' },
